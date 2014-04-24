@@ -3,6 +3,8 @@
     jQuery to make operations on same input plugin
     (c) 2014 Christian Rodriguez - http://www.rcchristiane.com.mx/
     license: http://www.opensource.org/licenses/mit-license.php
+    
+    Depends jquery v1.10.1
 */
 
 (function ( $ ) {
