@@ -96,8 +96,9 @@
             return val.join( '.' );
         }
 
+        // Check if trigger is on teclad actions
         var trigger = ( settings.trigger === 'keyup' || settings.trigger === 'keydown' || settings.trigger === 'keypress' );
-        
+
         $( this ).on( settings.trigger, function( e ) {
 
             if( trigger && settings.keyPress && e.keyCode !== settings.keyPress ) return;
