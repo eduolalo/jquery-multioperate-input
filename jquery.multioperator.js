@@ -1,7 +1,9 @@
 /*!
     Multioperator v0.0.1 - 2014-04-24
-    jQuery to make operations on same input plugin
+    jQuery plugin to make operations from-this-target input, from-this input or same input
+    check ./index.html and readme.md files
     (c) 2014 Christian Rodriguez - http://www.rcchristiane.com.mx/
+                                 - https://github.com/kalmecak/jquery-multioperate-input
     license: http://www.opensource.org/licenses/mit-license.php
     
     Depends jquery v1.10.1
