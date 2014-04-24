@@ -6,17 +6,34 @@
     <title>Multioperator Plugin</title>
 
     <script src="./jquery.js"></script>
-    <script src="./jquery.multioperator.input.js"></script>
+    <script src="./jquery.multioperator.js"></script>
 </head>
 <body>
     <h1>Plugin demo</h1>
-    
+        <label>Same input</label>
+        <input id="idOperator" type="text" value="$10,000">
+    <br><br>
+        <label>From input to target input</label>
+        <input id="from" type="text" value="$10,000" readonly>
+        <input id="writeble" data-from="from" data-target="target" type="text">
+        <input id="target" type="text"  readonly>
+    <br><br>
+        <label>From input to same input</label>
+        <input id="from2" type="text" value="$10,000" readonly>
+        <input id="writeble2" data-from="from2" type="text">
 
-<input id="idOperator"cclass="operator" type="text" value="$10,000">
+    <script>
+        $('#idOperator').multioperator();
 
-<script>
-	$('#idOperator').multioperator();
-</script>
+        var opts ={
+            from: 'from',
+            target: 'target'
+        }
+
+        $('#writeble').multioperator();
+
+        $('#writeble2').multioperator();
+    </script>
 
 </body>
 </html>

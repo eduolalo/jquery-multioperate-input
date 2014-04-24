@@ -14,8 +14,13 @@
             keyPress: 13,
             isMoney: true,
             decimals: 2,
-            comma: true
+            comma: true,
+            from: false,
+            target: false
         }, options);
+
+        settings.from = settings.from ? settings.from : $( this ).data( 'from' ) ? $( this ).data( 'from' ) : false;
+        settings.target = settings.target ? settings.target : $( this ).data( 'target' ) ? $( this ).data( 'target' ) : false;  
 
         var sumRes = new RegExp(/\-|\+/);
         var percent = new RegExp(/\%/);
@@ -92,21 +97,31 @@
             if( e.keyCode !== settings.keyPress ) {
                 return;
             }
-            var oText = $(this).val();
-            var noMoney = oText.replace( '$','' ).replace( ',','' );
-            var arr = noMoney.split( ' ' );
-            var orgnl = parseFloat( arr[0] );
+            var from = settings.from;
+            var oText = from ? $( '#' + from ).val() : $(this).val();
+            var noMoney = oText.replace( '$','' ).replace( ',','' ).trim();
+            var arr = from ? ' ' + $( this ).val() : noMoney;
+                arr = arr.split( ' ' );
+            var orgnl = from ? noMoney : arr[0];
+            orgnl = parseFloat( orgnl );
             if( !orgnl ) return;
             var out = parseFloat( orgnl );
             for( i in arr) {
-                if( arr[i] != '' && i != 0 ) {
-                    out = parse( orgnl, arr[i], out );
+                if( !from ) {
+                    if( arr[i] != '' && i != 0 ) out = parse( orgnl, arr[i], out );
+                } else {
+                    if( arr[i] != '' ) out = parse( orgnl, arr[i], out );
                 }
             }
             out = out.toFixed( settings.decimals );
             if( settings.comma ) out = parseCommas( out );
             if( settings.isMoney ) out = '$' + out;
-            $( this ).val( out + ' ' );
+
+            if( settings.target ) {
+                $( '#' + settings.target ).val( out + ' ' );
+            } else {
+                $( this ).val( out + ' ' );
+            }
         });
 
         return this;
