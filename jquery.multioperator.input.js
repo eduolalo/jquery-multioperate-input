@@ -1,3 +1,10 @@
+/*!
+    Multioperator v0.0.1 - 2014-04-24
+    jQuery to make operations on same input plugin
+    (c) 2014 Christian Rodriguez - http://www.rcchristiane.com.mx/
+    license: http://www.opensource.org/licenses/mit-license.php
+*/
+
 (function ( $ ) {
 
     $.fn.multioperator = function(options) {
@@ -91,14 +98,7 @@
             var out = parseFloat( orgnl );
             for( i in arr) {
                 if( arr[i] != '' && i != 0 ) {
-                    console.log(out, arr[i]);
-                    // if( sumRes.test(arr[i]) ) {
-                        // out += parse( orgnl, arr[i] );
-                    // } else {
-                        out = parse( orgnl, arr[i], out );
-                    // }
-                    console.log(out);
-
+                    out = parse( orgnl, arr[i], out );
                 }
             }
             out = out.toFixed( settings.decimals );
@@ -106,6 +106,7 @@
             if( settings.isMoney ) out = '$' + out;
             $( this ).val( out + ' ' );
         });
-    }
 
+        return this;
+    }
 }( jQuery ));
