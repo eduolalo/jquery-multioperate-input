@@ -13,6 +13,7 @@
 
     $.fn.multioperator = function(options) {
         var settings = $.extend({
+            trigger: 'keypress',
             keyPress: 13,
             isMoney: true,
             decimals: 2,
@@ -95,10 +96,11 @@
             return val.join( '.' );
         }
 
-        $( this ).on( 'keydown', function( e ) {
-            if( e.keyCode !== settings.keyPress ) {
-                return;
-            }
+        var trigger = ( settings.trigger === 'keyup' || settings.trigger === 'keydown' || settings.trigger === 'keypress' );
+        $( this ).on( settings.trigger, function( e ) {
+
+            if( trigger && settings.keyPress && e.keyCode !== settings.keyPress ) return;
+
             var from = settings.from;
             var oText = from ? $( '#' + from ).val() : $(this).val();
             var noMoney = oText.replace( '$','' ).replace( ',','' ).trim();
